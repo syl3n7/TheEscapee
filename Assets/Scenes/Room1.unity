@@ -1773,7 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       propertyPath: field of view
-      value: 36.115334
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       propertyPath: m_FocalLength
@@ -1797,7 +1797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       propertyPath: m_projectionMatrixMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: baec086904791744185aaa07a6cf55c2, type: 3}
       propertyPath: m_AllowDynamicResolution
