@@ -6,10 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
+    
+    public AudioSource MasterAudio;
+    [Range(1, 100)] 
+    public float masterVolume = 50;
+
+    public void audioControl()
+    {
+
+    }
+
     public GameObject panel;
     private void Start()
     {
-        panel.SetActive(false);
+        Scene sCene = SceneManager.GetActiveScene();
+        if (sCene.name != "Menu") panel.SetActive(false);
     }
     void Update()
     {
@@ -18,6 +29,10 @@ public class GameControl : MonoBehaviour
     void pauseMenu()
     {
         if (Input.GetKeyUp(KeyCode.Escape)) panel.SetActive(!panel.activeSelf);
+        while (panel.activeSelf)
+        {
+            Time.timeScale = 0f;
+        } Time.timeScale = 1f;
     }
     public void QuitGame()
     {
