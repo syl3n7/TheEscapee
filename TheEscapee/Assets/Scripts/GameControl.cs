@@ -3,44 +3,55 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEditor.IMGUI;
 
 public class GameControl : MonoBehaviour
 {
-    
+    public GameObject panel;
     public AudioSource MasterAudio;
-    [Range(1, 100)] 
+    [Range(1, 100)]
     public float masterVolume = 50;
+    Scene sCene;
+
+    void Start()
+    {
+        Application.targetFrameRate = 60;
+        sCene = SceneManager.GetActiveScene();
+        if (sCene.name != "Menu") panel.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (sCene.name != "Menu")
+        {
+            //pauseCamOnPause();
+            pauseMenu();
+        }
+    }
 
     public void audioControl()
     {
 
     }
 
-    public GameObject panel;
-    private void Start()
-    {
-        Scene sCene = SceneManager.GetActiveScene();
-        if (sCene.name != "Menu") panel.SetActive(false);
-    }
-    void Update()
-    {
-        pauseMenu();
-    }
-    void pauseMenu()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape)) panel.SetActive(!panel.activeSelf);
-        while (panel.activeSelf)
-        {
-            Time.timeScale = 0f;
-        } Time.timeScale = 1f;
-    }
-    public void QuitGame()
+    public void QuitGame() //serve para terminar o processo onde o jogo e executado
     {
         Application.Quit();
-        Debug.Log("Game is exiting"); //Just to make sure its working
     }
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName) //serve para carregar as scenes
     {
         SceneManager.LoadScene(sceneName);
     }
+    void pauseMenu() //serve para controlar o menu de pausa em todas as scenes exceto main menu
+    {
+        if (Input.GetKeyUp(KeyCode.Escape)) panel.SetActive(!panel.activeSelf);
+        if (panel.activeSelf) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
+    }
+
+    //void pauseCamOnPause()
+    //{
+    //    if (panel.activeSelf) cam.rotation.Set(0f, 0f, 0f, 0f);
+    //}
 }
