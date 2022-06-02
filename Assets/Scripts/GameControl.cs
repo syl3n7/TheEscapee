@@ -4,7 +4,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor.IMGUI;
 
 public class GameControl : MonoBehaviour
 {
@@ -25,14 +24,8 @@ public class GameControl : MonoBehaviour
     {
         if (sCene.name != "Menu")
         {
-            //pauseCamOnPause();
             pauseMenu();
         }
-    }
-
-    public void audioControl()
-    {
-
     }
 
     public void QuitGame() //serve para terminar o processo onde o jogo e executado
@@ -49,9 +42,4 @@ public class GameControl : MonoBehaviour
         if (panel.activeSelf) Time.timeScale = 0f;
         else Time.timeScale = 1f;
     }
-
-    //void pauseCamOnPause()
-    //{
-    //    if (panel.activeSelf) cam.rotation.Set(0f, 0f, 0f, 0f);
-    //}
 }
