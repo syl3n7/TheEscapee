@@ -16,6 +16,6 @@ public class PlayerLook : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(20f, 0f, 0f);
         // rotate player to look up and down, left and right
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
-        //transform.Rotate(Vector3.right * (mouseY * Time.deltaTime) * ySensitivity);
+        transform.Rotate(Vector3.left * (mouseY * Time.deltaTime) * ySensitivity);
     }
 }

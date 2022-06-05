@@ -32,8 +32,8 @@ public class PlayerMotor : MonoBehaviour
     private bool changeSpeedWalk = false;
     private bool changeSpeedRun = false;
 
-    [SerializeField]
-    private AudioSource jumpAudio;
+    //[SerializeField]
+    //private AudioSource jumpAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -86,17 +86,17 @@ public class PlayerMotor : MonoBehaviour
 
         isGrounded = controller.isGrounded;
 
-        if (!isGrounded && jumpAudio.isPlaying == false)
-        {
-            jumpAudio.Play();
-        }
-        else
-        {
-            if (isGrounded)
-            {
-                jumpAudio.Stop();
-            }
-        }
+        //if (!isGrounded && jumpAudio.isPlaying == false)
+        //{
+        //    jumpAudio.Play();
+        //}
+        //else
+        //{
+        //    if (isGrounded)
+        //    {
+        //        jumpAudio.Stop();
+        //    }
+        //}
 
         if (boosting)
         {
@@ -171,7 +171,7 @@ public class PlayerMotor : MonoBehaviour
                 playerVelocity.y = speed * _doubleJumpMultiplier;
                 changeSpeedWalk = true;
                 changeSpeedRun = true;
-                jumpAudio.Play();
+                //jumpAudio.Play();
                 _doubleJump = false;
             }
         }

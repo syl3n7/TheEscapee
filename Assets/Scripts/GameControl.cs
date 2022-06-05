@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEditor.IMGUI;
 
 public class GameControl : MonoBehaviour
 {
+    private InputManager inputManager;
     public GameObject panel;
-    public AudioSource MasterAudio;
-    [Range(1, 100)]
-    public float masterVolume = 50;
+    //public AudioSource MasterAudio;
+    //[Range(1, 100)]
+    //public float masterVolume = 50;
     Scene sCene;
 
     void Start()
@@ -19,6 +15,8 @@ public class GameControl : MonoBehaviour
         Application.targetFrameRate = 60;
         sCene = SceneManager.GetActiveScene();
         if (sCene.name != "Menu") panel.SetActive(false);
+        inputManager = GetComponent<InputManager>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -30,10 +28,10 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public void audioControl()
-    {
+    //public void audioControl()
+    //{
 
-    }
+    //}
 
     public void QuitGame() //serve para terminar o processo onde o jogo e executado
     {
@@ -45,13 +43,16 @@ public class GameControl : MonoBehaviour
     }
     void pauseMenu() //serve para controlar o menu de pausa em todas as scenes exceto main menu
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) panel.SetActive(!panel.activeSelf);
-        if (panel.activeSelf) Time.timeScale = 0f;
-        else Time.timeScale = 1f;
+        if (inputManager.onFoot.Pause.triggered)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
+            panel.SetActive(!panel.activeSelf);
+        }
     }
-
+    
     //void pauseCamOnPause()
     //{
-    //    if (panel.activeSelf) cam.rotation.Set(0f, 0f, 0f, 0f);
+
     //}
 }
