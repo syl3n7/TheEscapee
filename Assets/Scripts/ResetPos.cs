@@ -11,11 +11,9 @@ public class ResetPos : MonoBehaviour
     private void Start()
     {
         reset = p.transform.position;
-
     }
-
-    private void OnTriggerEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player") p.transform.position = reset;
+        if (other.gameObject.tag == "Player") p.transform.position = reset;
     }
 }
