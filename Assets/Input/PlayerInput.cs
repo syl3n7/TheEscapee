@@ -71,6 +71,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LMB"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7decd52-f884-480e-8276-996b9e1a7389"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +311,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b797876-6234-4570-a767-c55b477884ee"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""LMB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -894,6 +914,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
         m_OnFoot_Run = m_OnFoot.FindAction("Run", throwIfNotFound: true);
         m_OnFoot_Pause = m_OnFoot.FindAction("Pause", throwIfNotFound: true);
+        m_OnFoot_LMB = m_OnFoot.FindAction("LMB", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -970,6 +991,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Look;
     private readonly InputAction m_OnFoot_Run;
     private readonly InputAction m_OnFoot_Pause;
+    private readonly InputAction m_OnFoot_LMB;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -979,6 +1001,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_OnFoot_Look;
         public InputAction @Run => m_Wrapper.m_OnFoot_Run;
         public InputAction @Pause => m_Wrapper.m_OnFoot_Pause;
+        public InputAction @LMB => m_Wrapper.m_OnFoot_LMB;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1003,6 +1026,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPause;
+                @LMB.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLMB;
+                @LMB.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLMB;
+                @LMB.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnLMB;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -1022,6 +1048,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @LMB.started += instance.OnLMB;
+                @LMB.performed += instance.OnLMB;
+                @LMB.canceled += instance.OnLMB;
             }
         }
     }
@@ -1183,6 +1212,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnLMB(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

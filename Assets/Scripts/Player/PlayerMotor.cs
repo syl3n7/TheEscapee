@@ -32,25 +32,18 @@ public class PlayerMotor : MonoBehaviour
     private bool changeSpeedWalk = false;
     private bool changeSpeedRun = false;
 
-    //[SerializeField]
-    //private AudioSource jumpAudio;
-
-    // Start is called before the first frame update
     void Start()
     {
         inputManager = GetComponent<InputManager>();
         controller = GetComponent<CharacterController>();
-        //anim = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isGrounded && !inputManager.onFoot.Move.IsPressed())
         {
             speed = idle;
-            //anim.SetFloat("Speed", 0f);
         }
 
         if (isGrounded && inputManager.onFoot.Move.IsPressed())
@@ -65,7 +58,6 @@ public class PlayerMotor : MonoBehaviour
             {
                 speed = walk - 2f;
             }
-            //anim.SetFloat("Speed", 0.5f);
         }
 
         if (isGrounded && inputManager.onFoot.Run.IsPressed())
@@ -80,23 +72,9 @@ public class PlayerMotor : MonoBehaviour
             {
                 speed = run - 2f;
             }
-
-            //anim.SetFloat("Speed", 1f);
         }
 
         isGrounded = controller.isGrounded;
-
-        //if (!isGrounded && jumpAudio.isPlaying == false)
-        //{
-        //    jumpAudio.Play();
-        //}
-        //else
-        //{
-        //    if (isGrounded)
-        //    {
-        //        jumpAudio.Stop();
-        //    }
-        //}
 
         if (boosting)
         {
@@ -171,7 +149,6 @@ public class PlayerMotor : MonoBehaviour
                 playerVelocity.y = speed * _doubleJumpMultiplier;
                 changeSpeedWalk = true;
                 changeSpeedRun = true;
-                //jumpAudio.Play();
                 _doubleJump = false;
             }
         }
