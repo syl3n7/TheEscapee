@@ -12,14 +12,19 @@ public class Pauser : MonoBehaviour
     void Start()
     {
         sCene = SceneManager.GetActiveScene();
-        Cursor.lockState = CursorLockMode.Locked;
+        inputManager = GetComponent<InputManager>();
+        panel.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()//serve para controlar o menu de pausa em todas as scenes exceto main menu
+    void Update()
     {
-        if (sCene.name != "Menu") panel.SetActive(false);
-        inputManager = GetComponent<InputManager>();
-        Cursor.lockState = CursorLockMode.Locked;
+        if (inputManager.onFoot.Pause.triggered)
+        {
+            panel.SetActive(!panel.activeSelf);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+            
     }
 }

@@ -12,7 +12,6 @@ public class GameControl : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         sCene = SceneManager.GetActiveScene();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     //public void audioControl()

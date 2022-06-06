@@ -1,25 +1,25 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ClickBttn: MonoBehaviour
 {
-    public Animator bttn;
     public InputManager inputManager;
-
     public float dist = 2f;
+    public Camera cam;
+    public LayerMask BttnLayer;
+    public CheckPressed bttnPressed;
 
-    private bool press;
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * 2);
-        if (Physics.Raycast(ray, out hit, dist) && hit.collider.tag == "Button")
+        if (Physics.Raycast(ray, out hit, dist,BttnLayer))
         {
             if (inputManager.onFoot.LMB.triggered)
             {
-                Debug.Log("you are looking at the button");
-                bttn.SetTrigger("Pressed");
+                Debug.Log("Hit");
+                hit.transform.gameObject.GetComponent<ButtonState>().pressed = true;
             }
         }
     }

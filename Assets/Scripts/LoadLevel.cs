@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class LoadLevel : MonoBehaviour
 {
     public string sCene;
-    void OnCollisionEnter()
+    void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(sCene);
+        if (other.gameObject.tag == "Player") SceneManager.LoadScene(sCene);
     }
 }

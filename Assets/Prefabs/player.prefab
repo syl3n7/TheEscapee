@@ -202,9 +202,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1023c2d8be174c546aa714f82a6fa25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bttn: {fileID: 0}
-  inputManager: {fileID: 0}
+  inputManager: {fileID: 5433573517150872134}
   dist: 2
+  cam: {fileID: 0}
+  BttnLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bttnPressed: {fileID: 0}
 --- !u!114 &3988113232377261916
 MonoBehaviour:
   m_ObjectHideFlags: 0

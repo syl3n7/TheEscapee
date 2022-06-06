@@ -37,6 +37,7 @@ public class PlayerMotor : MonoBehaviour
         inputManager = GetComponent<InputManager>();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
